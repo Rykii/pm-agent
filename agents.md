@@ -37,7 +37,7 @@ pm-agent/
 │   ├── research-synthesis.md
 │   ├── competitive-brief.md
 │   └── metrics-review.md
-├── wiki/                  # 知识库
+├── pm-wiki/               # 知识库
 │   ├── specs/            # PRD 文档
 │   ├── roadmaps/         # 路线图
 │   ├── research/         # 研究综合
@@ -46,7 +46,7 @@ pm-agent/
 │   ├── updates/          # 利益相关者更新
 │   ├── ideas/            # 头脑风暴
 │   └── sprints/          # 迭代规划
-├── raw/                   # 原始资料
+├── pm-raw/                # 原始资料
 └── scripts/              # 辅助脚本
 ```
 
@@ -80,8 +80,8 @@ pm-agent/
 - Timeline（时间线）
 
 **步骤 4: 保存并记录**
-- 保存到 `wiki/specs/YYYY-MM-DD-功能名.md`
-- 更新 wiki/index.md
+- 保存到 `pm-wiki/specs/YYYY-MM-DD-功能名.md`
+- 更新 pm-wiki/index.md
 
 ### 2. Roadmap Update（路线图更新）
 
@@ -106,7 +106,7 @@ pm-agent/
 - 本次变更摘要
 
 **步骤 4: 保存**
-- 保存到 `wiki/roadmaps/roadmap-YYYY-MM.md`
+- 保存到 `pm-wiki/roadmaps/roadmap-YYYY-MM.md`
 
 ### 3. Stakeholder Update（利益相关者更新）
 
@@ -132,7 +132,7 @@ pm-agent/
 - 客户：新功能 + 即将推出 + 已知问题
 
 **步骤 4: 保存**
-- 保存到 `wiki/updates/YYYY-MM-DD-更新类型.md`
+- 保存到 `pm-wiki/updates/YYYY-MM-DD-更新类型.md`
 
 ### 4. Synthesize Research（综合研究）
 
@@ -163,7 +163,7 @@ pm-agent/
 - 待研究问题
 
 **步骤 5: 保存**
-- 保存到 `wiki/research/YYYY-MM-DD-研究主题.md`
+- 保存到 `pm-wiki/research/YYYY-MM-DD-研究主题.md`
 
 ### 5. Competitive Brief（竞品分析）
 
@@ -191,7 +191,7 @@ pm-agent/
 - 战略影响
 
 **步骤 4: 保存**
-- 保存到 `wiki/competitive/YYYY-MM-DD-竞品名.md`
+- 保存到 `pm-wiki/competitive/YYYY-MM-DD-竞品名.md`
 
 ### 6. Metrics Review（指标审查）
 
@@ -223,7 +223,7 @@ pm-agent/
 - 建议行动
 
 **步骤 5: 保存**
-- 保存到 `wiki/metrics/YYYY-MM-DD-指标审查.md`
+- 保存到 `pm-wiki/metrics/YYYY-MM-DD-指标审查.md`
 
 ### 7. Brainstorm（头脑风暴）
 
@@ -252,7 +252,7 @@ pm-agent/
 - 记录（Capture）
 
 **步骤 4: 保存**
-- 保存到 `wiki/ideas/YYYY-MM-DD-主题.md`
+- 保存到 `pm-wiki/ideas/YYYY-MM-DD-主题.md`
 
 ### 8. Sprint Planning（迭代规划）
 
@@ -279,7 +279,7 @@ pm-agent/
 - 关键日期
 
 **步骤 4: 保存**
-- 保存到 `wiki/sprints/YYYY-MM-DD-迭代名.md`
+- 保存到 `pm-wiki/sprints/YYYY-MM-DD-迭代名.md`
 
 ## 效率优化规范
 
@@ -292,7 +292,7 @@ pm-agent/
 - 更新已有页面仅追加链接：直接追加，不先读取全文
 
 ### 3. 延迟更新索引
-- 同一任务 Session 内的连续小操作，中间过程不反复更新 wiki/index.md
+- 同一任务 Session 内的连续小操作，中间过程不反复更新 pm-wiki/index.md
 - 任务结束时一次性批量更新
 
 ## 命名规范
@@ -329,7 +329,7 @@ status: draft|review|complete
 
 ## 特殊文件
 
-### wiki/index.md
+### pm-wiki/index.md
 内容索引，按类别组织：
 - Specs
 - Roadmaps
@@ -340,9 +340,51 @@ status: draft|review|complete
 - Ideas
 - Sprints
 
-### wiki/log.md
+### pm-wiki/log.md
 操作日志，记录所有 PM 活动。
 
 ---
 
 *本配置由 KimiCode Agent 读取并执行*
+
+---
+
+## 线框图（Wireframe）生成规范
+
+当生成交互原型线框图（HTML格式）时，必须遵循以下统一规范：
+
+### 1. 页签 Favicon
+
+每个线框图 HTML 文件的 <head> 中，必须在 <title> 之前插入统一的 favicon：
+
+`html
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23444'/%3E%3Cpolyline points='20,70 40,50 60,60 80,30' stroke='%23fff' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+`
+
+> **设计说明**：深色圆角方块 + 白色上升趋势折线，代表交易/数据洞察。
+
+### 2. 底部个人 Logo
+
+每个线框图 HTML 文件的 </body> 闭合标签之前，必须插入统一的底部标识：
+
+`html
+<div style="text-align:center; padding: 12px; font-size: 11px; color: #9ca3af;">Rykii Wang</div>
+`
+
+### 3. 线框图风格统一
+
+- **CSS 类名体系**：复用统一的 wire-* 前缀类名（wire-box / wire-input / wire-btn / wire-table / wire-tag / wire-section-title 等）
+- **配色**：低保真灰度风格，禁用真实品牌色，仅用灰阶 + 红黄绿状态色
+- **边框**：虚线边框（order: 1.5px dashed #999）标识线框区域
+- **字体**：'Microsoft YaHei', sans-serif，等宽字体用于数字（Consolas / Monaco）
+
+### 4. 交互标注
+
+每个线框图末尾必须包含 **"线框图图例与交互标注"** 区块，说明：
+- 控件图例（输入框/按钮/标签/KPI卡片等）
+- 布局说明（区域划分/尺寸/响应式规则）
+- 关键交互标注（Tab切换/展开收起/弹窗/联动等）
+
+---
+
+*线框图规范更新于 2026-05-08*

@@ -102,15 +102,15 @@ PM Agent 涵盖完整的 PM 工作流程：
 
 ### 3. 查看产出
 
-所有产出都保存在 `wiki/` 目录下：
-- PRDs → `wiki/specs/`
-- 路线图 → `wiki/roadmaps/`
-- 研究综合 → `wiki/research/`
-- 竞品分析 → `wiki/competitive/`
-- 指标报告 → `wiki/metrics/`
-- 利益相关者更新 → `wiki/updates/`
-- 头脑风暴 → `wiki/ideas/`
-- 迭代规划 → `wiki/sprints/`
+所有产出都保存在 `pm-wiki/` 目录下：
+- PRDs → `pm-wiki/specs/`
+- 路线图 → `pm-wiki/roadmaps/`
+- 研究综合 → `pm-wiki/research/`
+- 竞品分析 → `pm-wiki/competitive/`
+- 指标报告 → `pm-wiki/metrics/`
+- 利益相关者更新 → `pm-wiki/updates/`
+- 头脑风暴 → `pm-wiki/ideas/`
+- 迭代规划 → `pm-wiki/sprints/`
 
 ## 目录结构
 
@@ -133,7 +133,7 @@ pm-agent/
 │   ├── research-synthesis.md
 │   ├── competitive-brief.md
 │   └── metrics-review.md
-├── wiki/                  # 知识库（自动填充）
+├── pm-wiki/               # 知识库（自动填充）
 │   ├── index.md
 │   ├── log.md
 │   ├── specs/
@@ -144,7 +144,7 @@ pm-agent/
 │   ├── updates/
 │   ├── ideas/
 │   └── sprints/
-└── raw/                   # 原始资料
+└── pm-raw/                # 原始资料
 ```
 
 ## 工作流程示例
@@ -156,8 +156,8 @@ pm-agent/
 **Agent**:
 1. 询问目标用户、成功指标、约束
 2. 生成结构化 PRD
-3. 保存到 `wiki/specs/2024-01-15-SSO.md`
-4. 更新 `wiki/index.md`
+3. 保存到 `pm-wiki/specs/2024-01-15-SSO.md`
+4. 更新 `pm-wiki/index.md`
 
 ### 示例 2: 综合研究
 
@@ -167,7 +167,7 @@ pm-agent/
 1. 读取你提供的笔记
 2. 识别主题和模式
 3. 生成研究综合报告
-4. 保存到 `wiki/research/2024-01-15-onboarding-interviews.md`
+4. 保存到 `pm-wiki/research/2024-01-15-onboarding-interviews.md`
 
 ### 示例 3: 竞品分析
 
@@ -177,7 +177,7 @@ pm-agent/
 1. 进行研究（通过网络搜索或你提供的信息）
 2. 生成功能对比和定位分析
 3. 提供战略建议
-4. 保存到 `wiki/competitive/2024-01-15-competitor-x.md`
+4. 保存到 `pm-wiki/competitive/2024-01-15-competitor-x.md`
 
 ## 最佳实践
 
@@ -201,7 +201,7 @@ PM Agent 可以与以下工具配合使用（通过手动导入数据）：
 1. **隐私**: 注意不要在输入中分享敏感信息
 2. **验证**: AI 生成内容需要人工审核
 3. **迭代**: 初稿是起点，需要反复打磨
-4. **可追溯**: 所有产出都保存在 wiki 中便于追溯
+4. **可追溯**: 所有产出都保存在 pm-wiki 中便于追溯
 
 ## 自定义配置
 
@@ -222,7 +222,7 @@ PM Agent 可以与以下工具配合使用（通过手动导入数据）：
 - 引用示例："参考 [[之前的 PRD]] 的格式"
 
 ### 忘记保存到 wiki
-- 提醒："请保存到 wiki/specs/"
+- 提醒："请保存到 pm-wiki/specs/"
 
 ## 贡献
 
