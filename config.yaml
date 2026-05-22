@@ -1,0 +1,105 @@
+# PM Agent 全局配置
+# 脚本和 Agent 均从此文件读取默认值
+
+project:
+  name: "pm-agent"
+  author: "Rykii Wang"
+  default_timezone: "Asia/Shanghai"
+  date_format: "%Y-%m-%d"
+  datetime_format: "%Y-%m-%d %H:%M"
+
+frontmatter_defaults:
+  category: "product-management"
+  status: "draft"
+  tags: ["pm"]
+
+workflows:
+  write-spec:
+    prompt: "prompts/write-spec.md"
+    template: "templates/prd.md"
+    save_to: "pm-wiki/specs/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "prd"
+  roadmap-update:
+    prompt: "prompts/roadmap-update.md"
+    template: "templates/roadmap.md"
+    save_to: "pm-wiki/roadmaps/"
+    naming_pattern: "^roadmap-(\d{4}-\d{2})\.md$"
+    frontmatter_type: "roadmap"
+  stakeholder-update:
+    prompt: "prompts/stakeholder-update.md"
+    template: "templates/stakeholder-update.md"
+    save_to: "pm-wiki/updates/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "update"
+  synthesize-research:
+    prompt: "prompts/synthesize-research.md"
+    template: "templates/research-synthesis.md"
+    save_to: "pm-wiki/research/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "research"
+  competitive-brief:
+    prompt: "prompts/competitive-brief.md"
+    template: "templates/competitive-brief.md"
+    save_to: "pm-wiki/competitive/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "competitive"
+  metrics-review:
+    prompt: "prompts/metrics-review.md"
+    template: "templates/metrics-review.md"
+    save_to: "pm-wiki/metrics/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "metrics"
+  brainstorm:
+    prompt: "prompts/brainstorm.md"
+    template: null
+    save_to: "pm-wiki/ideas/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "idea"
+  sprint-planning:
+    prompt: "prompts/sprint-planning.md"
+    template: "templates/sprint.md"
+    save_to: "pm-wiki/sprints/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "sprint"
+  retrospective:
+    prompt: "prompts/retrospective.md"
+    template: "templates/retrospective.md"
+    save_to: "pm-wiki/retrospectives/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "retrospective"
+  release-planning:
+    prompt: "prompts/release-planning.md"
+    template: "templates/release-planning.md"
+    save_to: "pm-wiki/releases/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "release"
+  user-journey-map:
+    prompt: "prompts/user-journey-map.md"
+    template: "templates/user-journey-map.md"
+    save_to: "pm-wiki/journeys/"
+    naming_pattern: "^(\d{4}-\d{2}-\d{2})-(.+)\.md$"
+    frontmatter_type: "journey"
+
+wiki_dirs:
+  - "pm-wiki/specs"
+  - "pm-wiki/roadmaps"
+  - "pm-wiki/research"
+  - "pm-wiki/competitive"
+  - "pm-wiki/metrics"
+  - "pm-wiki/updates"
+  - "pm-wiki/ideas"
+  - "pm-wiki/sprints"
+  - "pm-wiki/retrospectives"
+  - "pm-wiki/releases"
+  - "pm-wiki/journeys"
+
+index_file: "pm-wiki/index.md"
+log_file: "pm-wiki/log.md"
+
+efficiency_rules:
+  - "Batch ops: Multiple file reads/writes in parallel when independent"
+  - "Minimal reads: Use Glob/Grep to check existence, not ReadFile"
+  - "Append-only updates: Update existing pages by appending links"
+  - "Lazy index update: Update index.md once at session end"
+  - "Temp files: Use tmp/ for scratch scripts and work-in-progress"

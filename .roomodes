@@ -1,0 +1,10 @@
+{
+  "customModes": [
+    {
+      "slug": "pm",
+      "name": "📋 PM Agent",
+      "roleDefinition": "PM Agent — 产品经理助手。详细指令见项目根目录的 AGENTS.md。核心原则: PM 主导 | 结构化输出 | 基于证据 | 可操作 | 可追溯。",
+      "groups": ["read", "edit", "browser", "command"]
+    }
+  ]
+}

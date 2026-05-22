@@ -1,238 +1,197 @@
-# PM Agent - AI 产品经理助手
+# PM Agent
 
-基于 Anthropic 的 Product Management Plugin 转换的 KimiCode Agent。
+> AI 产品经理助手 — 帮助 PM 完成需求文档、路线图规划、用户研究、竞品分析、指标追踪、头脑风暴、迭代规划、产品复盘、发布计划和用户旅程地图。
 
-## 核心能力
+## 快速开始
 
-PM Agent 涵盖完整的 PM 工作流程：
+### 1. 初始化知识库
 
-### 1. Write Spec（撰写需求文档）
-将想法转化为结构化的 PRD，包含：
-- 问题陈述、目标、非目标
-- 用户故事（按优先级排序）
-- 需求分类（P0/P1/P2）
-- 成功指标（领先和滞后指标）
-- 待解决问题和时间线
-
-**使用**: "帮我写 SSO 功能的 PRD"
-
-### 2. Roadmap Update（路线图更新）
-创建和更新产品路线图：
-- Now/Next/Later 格式
-- 季度主题
-- OKR 对齐视图
-- 优先级框架（RICE、MoSCoW、ICE）
-- 依赖映射
-
-**使用**: "更新下季度路线图"
-
-### 3. Stakeholder Update（利益相关者更新）
-针对不同受众定制状态更新：
-- 高管层（战略、简洁）
-- 工程团队（技术细节、阻塞）
-- 跨职能伙伴（依赖、需求）
-- 客户（收益导向）
-
-**使用**: "写个给高管的周度更新"
-
-### 4. Synthesize Research（综合研究）
-将用户研究转化为结构化洞察：
-- 主题分析
-- 用户画像开发
-- 机会领域识别
-- 可操作的建议
-
-**使用**: "整理这 10 份访谈笔记"
-
-### 5. Competitive Brief（竞品分析）
-创建全面的竞品分析：
-- 功能对比矩阵
-- 定位分析
-- 优势和劣势
-- 战略影响和建议
-
-**使用**: "分析竞争对手 X 和 Y"
-
-### 6. Metrics Review（指标审查）
-分析产品指标并识别趋势：
-- 指标层次结构（North Star + L1 + L2）
-- 趋势分析
-- 亮点和关注领域
-- 可执行的建议
-
-**使用**: "审查本月的产品指标"
-
-### 7. Brainstorm（头脑风暴）
-作为思考伙伴：
-- 问题探索
-- 解决方案构思
-- 假设测试
-- 战略探索
-- 使用 HMW、JTBD、Opportunity Solution Trees 等框架
-
-**使用**: "和我一起头脑风暴如何提高留存"
-
-### 8. Sprint Planning（迭代规划）
-规划敏捷迭代：
-- 容量计算
-- 待办事项优先级
-- 风险识别
-- 迭代目标设定
-
-**使用**: "规划下两周的迭代"
-
-## 安装和使用
-
-### 1. 配置 Agent
-
-将 `agents.md` 的内容复制到 KimiCode 的 Agent 配置中。
-
-### 2. 使用 Agent
-
-直接在对话中下达任务：
-
-```
-帮我写 [功能名] 的 PRD
-更新产品路线图
-综合这些用户访谈
-分析 [竞品名]
-审查本月指标
-一起头脑风暴 [主题]
+```bash
+python scripts/setup.py
 ```
 
-### 3. 查看产出
+### 2. 配置 Agent
 
-所有产出都保存在 `pm-wiki/` 目录下：
-- PRDs → `pm-wiki/specs/`
-- 路线图 → `pm-wiki/roadmaps/`
-- 研究综合 → `pm-wiki/research/`
-- 竞品分析 → `pm-wiki/competitive/`
-- 指标报告 → `pm-wiki/metrics/`
-- 利益相关者更新 → `pm-wiki/updates/`
-- 头脑风暴 → `pm-wiki/ideas/`
-- 迭代规划 → `pm-wiki/sprints/`
+**零配置，打开项目即用。**
+
+本项目使用 [`AGENTS.md`](AGENTS.md) 作为唯一主配置文件，所有主流 AI 工具已经覆盖：
+
+| AI 工具 | 自动加载文件 | 说明 |
+|---------|-------------|------|
+| **Roo Code** | `.clinerules` + `.roomodes` | 打开项目自动加载 + "📋 PM Agent" 专属模式 |
+| **Cursor** | `.cursorrules` | 打开项目自动加载 |
+| **Claude Code** | `CLAUDE.md` | 自动发现 |
+| **GitHub Copilot** | `AGENTS.md` | 原生支持 |
+| **Windsurf** | `.windsurfrules` | 打开项目自动加载 |
+| **Aider** | `CONVENTIONS.md` | 自动发现 |
+
+所有工具配置文件内容指向 [`AGENTS.md`](AGENTS.md) 获取完整指令。也有独立参考手册 [`pm-agent.md`](pm-agent.md)。
+
+### 3. 开始使用
+
+直接对话即可：
+
+- "帮我写碳金融交易管理的 PRD"
+- "更新产品路线图"
+- "整理这些访谈笔记"
+- "分析竞品 X"
+- "审查本月产品指标"
+- "一起头脑风暴用户留存"
+- "规划下两周迭代"
+- "生成 Sprint-12 的迭代计划"
+- "做 Q2 产品复盘"
+- "制定 v2.3 发布计划"
+- "绘制新用户旅程地图"
+
+## 工作流索引
+
+| # | 工作流 | 说明 | Prompt | Template |
+|---|--------|------|--------|----------|
+| 1 | **Write Spec** | 撰写 PRD | `prompts/write-spec.md` | `templates/prd.md` |
+| 2 | **Roadmap Update** | 更新路线图 | `prompts/roadmap-update.md` | `templates/roadmap.md` |
+| 3 | **Stakeholder Update** | 利益相关者更新 | `prompts/stakeholder-update.md` | `templates/stakeholder-update.md` |
+| 4 | **Synthesize Research** | 研究综合 | `prompts/synthesize-research.md` | `templates/research-synthesis.md` |
+| 5 | **Competitive Brief** | 竞品分析 | `prompts/competitive-brief.md` | `templates/competitive-brief.md` |
+| 6 | **Metrics Review** | 指标审查 | `prompts/metrics-review.md` | `templates/metrics-review.md` |
+| 7 | **Brainstorm** | 头脑风暴 | `prompts/brainstorm.md` | (内联输出) |
+| 8 | **Sprint Planning** | 迭代规划 | `prompts/sprint-planning.md` | `templates/sprint.md` |
+| 9 | **Retrospective** | 产品复盘 | `prompts/retrospective.md` | `templates/retrospective.md` |
+| 10 | **Release Planning** | 发布计划 | `prompts/release-planning.md` | `templates/release-planning.md` |
+| 11 | **User Journey Map** | 用户旅程 | `prompts/user-journey-map.md` | `templates/user-journey-map.md` |
+
+## 脚本工具
+
+### create_doc.py — 按工作流创建文档
+
+```bash
+# 创建 PRD
+python scripts/create_doc.py spec "碳金融交易管理PRD-v1.0"
+
+# 创建迭代计划
+python scripts/create_doc.py sprint "Sprint-12"
+
+# 创建复盘
+python scripts/create_doc.py retrospective "2026-Q2-复盘"
+
+# 创建发布计划
+python scripts/create_doc.py release "v2.3-发布"
+
+# 创建用户旅程
+python scripts/create_doc.py journey "新用户旅程地图"
+```
+
+### update_index.py — 更新索引和日志
+
+```bash
+# 更新 pm-wiki/index.md 和 pm-wiki/log.md
+python scripts/update_index.py
+
+# 预览更新内容（不写入）
+python scripts/update_index.py --dry-run
+```
+
+### validate.py — 验证文档规范
+
+```bash
+# 验证全部文档
+python scripts/validate.py
+
+# 验证单个文件
+python scripts/validate.py pm-wiki/specs/2026-05-07-xxx.md
+```
+
+## 命名规范速查
+
+| 类型 | 命名模式 | 示例 |
+|------|----------|------|
+| PRD | `YYYY-MM-DD-功能名.md` | `2026-05-07-交易工作台PRD-v1.0.md` |
+| Roadmap | `roadmap-YYYY-MM.md` | `roadmap-2026-05.md` |
+| Updates | `YYYY-MM-DD-更新类型.md` | `2026-05-14-weekly-update.md` |
+| Research | `YYYY-MM-DD-研究主题.md` | `2026-04-29-summit培训材料分析.md` |
+| Competitive | `YYYY-MM-DD-竞品名.md` | `2026-05-14-competitor-x.md` |
+| Metrics | `YYYY-MM-DD-指标审查.md` | `2026-05-14-metrics-review.md` |
+| Ideas | `YYYY-MM-DD-主题.md` | `2026-05-14-improve-retention.md` |
+| Sprint | `YYYY-MM-DD-迭代名.md` | `2026-05-14-sprint-12.md` |
+| Retrospective | `YYYY-MM-DD-复盘主题.md` | `2026-05-14-sprint12-retrospective.md` |
+| Release | `YYYY-MM-DD-版本发布.md` | `2026-05-14-v2.3-release.md` |
+| Journey | `YYYY-MM-DD-旅程主题.md` | `2026-05-14-new-user-journey.md` |
+
+## Frontmatter 规范
+
+所有 Wiki 页面必须包含：
+
+```yaml
+---
+title: 页面标题
+type: prd|roadmap|update|research|competitive|metrics|idea|sprint|retrospective|release|journey
+category: product-management
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+tags: [tag1, tag2]
+status: draft|review|complete
+---
+```
 
 ## 目录结构
 
 ```
 pm-agent/
-├── agents.md              # Agent 配置文件（核心）
-├── README.md              # 本文件
-├── prompts/               # 详细 Prompt 模板
-│   ├── write-spec.md
-│   ├── roadmap-update.md
-│   ├── stakeholder-update.md
-│   ├── synthesize-research.md
-│   ├── competitive-brief.md
-│   ├── metrics-review.md
-│   └── brainstorm.md
-├── templates/             # 输出模板
-│   ├── prd.md
-│   ├── roadmap.md
-│   ├── stakeholder-update.md
-│   ├── research-synthesis.md
-│   ├── competitive-brief.md
-│   └── metrics-review.md
-├── pm-wiki/               # 知识库（自动填充）
-│   ├── index.md
-│   ├── log.md
-│   ├── specs/
-│   ├── roadmaps/
-│   ├── research/
-│   ├── competitive/
-│   ├── metrics/
-│   ├── updates/
-│   ├── ideas/
-│   └── sprints/
-└── pm-raw/                # 原始资料
+├── pm-agent.md          # Agent 系统指令
+├── README.md            # 本文件
+├── config.yaml          # 全局配置
+├── prompts/             # 11 个工作流 Prompt
+├── templates/           # 10 个输出模板（Brainstorm 无模板）
+├── pm-wiki/             # 知识库（11 个子目录）
+│   ├── index.md         # 自动生成的索引
+│   ├── log.md           # 操作日志
+│   ├── specs/           # PRD 文档
+│   ├── roadmaps/        # 路线图
+│   ├── research/        # 研究综合
+│   ├── competitive/     # 竞品分析
+│   ├── metrics/         # 指标报告
+│   ├── updates/         # 利益相关者更新
+│   ├── ideas/           # 头脑风暴
+│   ├── sprints/         # 迭代规划
+│   ├── retrospectives/  # 产品复盘
+│   ├── releases/        # 发布计划
+│   └── journeys/        # 用户旅程地图
+├── pm-raw/              # 原始资料（用户提供）
+├── tmp/                 # 临时文件
+└── scripts/             # 辅助脚本
 ```
 
-## 工作流程示例
+## 配置
 
-### 示例 1: 撰写 PRD
+全局配置在 `config.yaml` 中，包含：
+- 项目信息（名称、作者、时区、日期格式）
+- Frontmatter 默认值
+- 11 个工作流的配置（prompt 路径、模板路径、保存目录、命名正则、frontmatter 类型）
+- Wiki 目录列表
+- 效率规则
 
-**你**: "帮我写 SSO 功能的 PRD"
+## 效率规则
 
-**Agent**:
-1. 询问目标用户、成功指标、约束
-2. 生成结构化 PRD
-3. 保存到 `pm-wiki/specs/2024-01-15-SSO.md`
-4. 更新 `pm-wiki/index.md`
+1. **Batch ops**: 独立文件的读写并行执行
+2. **Minimal reads**: 用 Glob/Grep 检查存在性，而非 ReadFile
+3. **Append-only updates**: 更新现有页面时追加链接，不重新读取完整文件
+4. **Lazy index update**: 每次会话结束时更新一次 `pm-wiki/index.md`
+5. **Temp files**: 使用 `tmp/` 存放临时脚本和工作文件
 
-### 示例 2: 综合研究
+## 依赖
 
-**你**: "整理这 10 份访谈笔记"
+脚本工具需要 Python 3.8+ 和 PyYAML：
 
-**Agent**:
-1. 读取你提供的笔记
-2. 识别主题和模式
-3. 生成研究综合报告
-4. 保存到 `pm-wiki/research/2024-01-15-onboarding-interviews.md`
+```bash
+pip install pyyaml
+```
 
-### 示例 3: 竞品分析
+## 常见问题
 
-**你**: "分析竞争对手 X"
+**Q: Brainstorm 为什么没有模板？**
+A: 头脑风暴的输出是动态的、对话式的，不适合固定模板。输出保存为 Markdown 到 `pm-wiki/ideas/`。
 
-**Agent**:
-1. 进行研究（通过网络搜索或你提供的信息）
-2. 生成功能对比和定位分析
-3. 提供战略建议
-4. 保存到 `pm-wiki/competitive/2024-01-15-competitor-x.md`
+**Q: 如何添加新的工作流？**
+A: 1) 在 `config.yaml` 的 `workflows` 中添加配置；2) 创建 `prompts/<name>.md`；3) 创建 `templates/<name>.md`（可选）；4) 更新 `pm-agent.md` 的 Workflow Index。
 
-## 最佳实践
-
-1. **明确目标**: 告诉 Agent 你的决策背景
-2. **提供上下文**: 分享相关文档、数据或背景信息
-3. **迭代完善**: 审阅初稿并提供反馈
-4. **保持更新**: 定期让 Agent 更新路线图和指标
-5. **建立连接**: 在文档中使用 `[[链接]]` 建立知识关联
-
-## 与其他工具集成
-
-PM Agent 可以与以下工具配合使用（通过手动导入数据）：
-- **项目管理**: Linear, Asana, Jira, Monday.com, ClickUp
-- **分析**: Amplitude, Mixpanel, Pendo
-- **用户反馈**: Intercom, Productboard
-- **设计**: Figma
-- **知识库**: Notion, Confluence
-
-## 注意事项
-
-1. **隐私**: 注意不要在输入中分享敏感信息
-2. **验证**: AI 生成内容需要人工审核
-3. **迭代**: 初稿是起点，需要反复打磨
-4. **可追溯**: 所有产出都保存在 pm-wiki 中便于追溯
-
-## 自定义配置
-
-编辑 `agents.md` 可以：
-- 修改目录结构
-- 调整模板内容
-- 自定义标签体系
-- 修改工作流程
-
-## 故障排除
-
-### Agent 不理解任务
-- 使用更具体的语言："写 PRD" 而非 "处理这个"
-- 提供背景："这是给企业客户的功能"
-
-### 输出不符合预期
-- 提供反馈："这个太详细了，需要更简洁"
-- 引用示例："参考 [[之前的 PRD]] 的格式"
-
-### 忘记保存到 wiki
-- 提醒："请保存到 pm-wiki/specs/"
-
-## 贡献
-
-欢迎提交 Issue 和改进建议！
-
-## 致谢
-
-- 基于 Anthropic 的 Product Management Plugin
-- 转换为 KimiCode Agent 格式
-
----
-
-**开始使用**: 配置好 Agent 后，直接说"帮我写 [功能] 的 PRD"即可开始！
+**Q: 文件名不符合规范怎么办？**
+A: 运行 `python scripts/validate.py` 检查具体问题。命名规范定义在 `config.yaml` 的 `workflows.*.naming_pattern` 中。
